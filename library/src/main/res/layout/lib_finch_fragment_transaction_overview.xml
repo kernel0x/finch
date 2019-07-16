@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lib_finch_background"
+    android:scrollbars="vertical"
+    tools:context=".core.ui.TransactionOverviewFragment">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16sp"
+        android:stretchColumns="1">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_url" />
+
+            <TextView
+                android:id="@+id/viewUrl"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="https://example.com/path/to/resource?here=might_be_really_long" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_method" />
+
+            <TextView
+                android:id="@+id/viewMethod"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="GET" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_protocol" />
+
+            <TextView
+                android:id="@+id/viewProtocol"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="HTTP/1.1" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_status" />
+
+            <TextView
+                android:id="@+id/viewStatus"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Complete" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_response" />
+
+            <TextView
+                android:id="@+id/viewResponse"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="200 OK" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_ssl" />
+
+            <TextView
+                android:id="@+id/viewSsl"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Yes" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8sp">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_request_time" />
+
+            <TextView
+                android:id="@+id/viewRequestTime"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="05/02/17 11:52:49" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_response_time" />
+
+            <TextView
+                android:id="@+id/viewResponseTime"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="05/02/17 11:52:49" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_duration" />
+
+            <TextView
+                android:id="@+id/viewDuration"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="405 ms" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8sp">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_request_size" />
+
+            <TextView
+                android:id="@+id/viewRequestSize"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="53 KB" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_response_size" />
+
+            <TextView
+                android:id="@+id/viewResponseSize"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="148 KB" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/Lib.Finch.TextAppearance.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lib_finch_total_size" />
+
+            <TextView
+                android:id="@+id/viewTotalSize"
+                style="@style/Lib.Finch.TextAppearance.Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="201 KB" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.core.widget.NestedScrollView>

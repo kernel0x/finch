@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lib_finch_background"
+    android:scrollbars="vertical"
+    tools:context=".core.ui.TransactionPayloadFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16sp">
+
+        <TextView
+            android:id="@+id/viewHeaders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/lib_finch_text"
+            android:textIsSelectable="true" />
+
+        <TextView
+            android:id="@+id/viewBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/lib_finch_text"
+            android:textIsSelectable="true" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

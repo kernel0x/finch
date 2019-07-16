@@ -1,0 +1,2 @@
+-keep class android.support.v7.widget.SearchView { *; }
+-dontwarn com.google.gson.Gson$6

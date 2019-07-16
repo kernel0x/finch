@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kernel.finch">
+
+    <application>
+        <activity
+            android:name=".core.ui.MainActivity"
+            android:label="@string/lib_finch_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}.task"
+            android:theme="@style/Lib.Finch.Theme" />
+        <activity
+            android:name=".core.ui.TransactionActivity"
+            android:parentActivityName=".core.ui.MainActivity"
+            android:theme="@style/Lib.Finch.Theme" />
+
+        <service
+            android:name=".core.ui.ClearTransactionsService"
+            android:exported="false" />
+    </application>
+</manifest>
