@@ -18,6 +18,13 @@
                     android:id="@+id/share_text"
                     android:title="@string/lib_finch_share_as_text" />
                 <item
+                    android:id="@+id/share_file"
+                    android:title="@string/lib_finch_share_as_file" />
+                <item
+                    android:id="@+id/share_json"
+                    android:title="@string/lib_finch_share_as_json"
+                    android:visible="false" />
+                <item
                     android:id="@+id/share_curl"
                     android:title="@string/lib_finch_share_as_curl" />
             </group>

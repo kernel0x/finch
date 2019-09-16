@@ -6,19 +6,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
+import com.kernel.finch.BuildConfig
 import com.kernel.finch.R
 import com.kernel.finch.core.data.FinchDatabase
 import com.kernel.finch.core.data.models.TransactionHttpEntity
 import com.kernel.finch.core.ui.TransactionPayloadFragment.Companion.TYPE_REQUEST
 import com.kernel.finch.core.ui.TransactionPayloadFragment.Companion.TYPE_RESPONSE
+import com.kernel.finch.core.utils.FileUtils
 import com.kernel.finch.core.utils.FormatUtil
 import kotlinx.android.synthetic.main.lib_finch_activity_transaction.*
+import java.io.File
 import java.util.*
+
 
 class TransactionActivity : BaseFinchActivity() {
 
@@ -36,25 +41,43 @@ class TransactionActivity : BaseFinchActivity() {
         layoutTabs.setupWithViewPager(viewPager)
 
         transactionHttpId = intent.getLongExtra(ARG_TRANSACTION_HTTP_ID, 0)
-        FinchDatabase.getInstance(application).transactionHttp().getById(transactionHttpId).observe(this, Observer { value ->
-            transactionHttp = value
-            update()
-        })
+        FinchDatabase.getInstance(application)
+                .transactionHttp()
+                .getById(transactionHttpId)
+                .observe(this, Observer { value ->
+                    transactionHttp = value
+                    update()
+                })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.lib_finch_transaction, menu)
+        menuInflater.inflate(R.menu.lib_finch_transaction, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when {
-            item.itemId == R.id.share_text -> {
+        return when (item.itemId) {
+            R.id.share_text -> {
                 share(FormatUtil.getShareText(this, transactionHttp!!))
                 true
             }
-            item.itemId == R.id.share_curl -> {
+            R.id.share_file -> {
+                transactionHttp?.apply {
+                    shareFile(FileUtils.createTextFile(this@TransactionActivity,
+                            requestDate,
+                            FormatUtil.getShareText(this@TransactionActivity, this)))
+                }
+                true
+            }
+            R.id.share_json -> {
+                transactionHttp?.apply {
+                    shareFile(FileUtils.createJsonFile(this@TransactionActivity,
+                            requestDate,
+                            responseBody))
+                }
+                true
+            }
+            R.id.share_curl -> {
                 share(FormatUtil.getShareCurlCommand(transactionHttp!!))
                 true
             }
@@ -64,10 +87,10 @@ class TransactionActivity : BaseFinchActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun update() {
-        if (transactionHttp != null) {
-            viewToolbarTitle.text = transactionHttp!!.method + " " + transactionHttp!!.path
+        transactionHttp?.apply {
+            viewToolbarTitle.text = "$method $path"
             for (fragment in adapter.fragments) {
-                fragment.transactionUpdated(transactionHttp!!)
+                fragment.transactionUpdated(this)
             }
         }
     }
@@ -93,6 +116,19 @@ class TransactionActivity : BaseFinchActivity() {
         sendIntent.type = "text/plain"
         startActivity(Intent.createChooser(sendIntent, null))
     }
+
+    private fun shareFile(file: File?) {
+        file?.apply {
+            val path = FileProvider
+                    .getUriForFile(this@TransactionActivity, BuildConfig.APPLICATION_ID, file)
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.setDataAndType(path, contentResolver.getType(path))
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, path)
+            sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            startActivity(Intent.createChooser(sharingIntent, null))
+        }
+    }
+
 
     internal class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         val fragments: MutableList<TransactionFragment> = ArrayList()

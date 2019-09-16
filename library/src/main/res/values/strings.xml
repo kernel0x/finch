@@ -28,4 +28,6 @@
     <string name="lib_finch_body_unexpected_eof">\n\n--- Unexpected end of content ---</string>
     <string name="lib_finch_body_content_truncated">\n\n--- Content truncated ---</string>
     <string name="lib_finch_notification_title">Traffic Monitoring</string>
+    <string name="lib_finch_share_as_file">Share as .txt</string>
+    <string name="lib_finch_share_as_json">Share response as .json</string>
 </resources>
