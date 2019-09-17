@@ -58,7 +58,9 @@ class TransactionActivity : BaseFinchActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.share_text -> {
-                share(FormatUtil.getShareText(this, transactionHttp!!))
+                transactionHttp?.apply {
+                    share(FormatUtil.getShareText(this@TransactionActivity, this))
+                }
                 true
             }
             R.id.share_file -> {
@@ -78,7 +80,9 @@ class TransactionActivity : BaseFinchActivity() {
                 true
             }
             R.id.share_curl -> {
-                share(FormatUtil.getShareCurlCommand(transactionHttp!!))
+                transactionHttp?.apply {
+                    share(FormatUtil.getShareCurlCommand(this))
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
