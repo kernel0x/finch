@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kernel.finch">
 
@@ -15,6 +14,15 @@
             android:parentActivityName=".core.ui.MainActivity"
             android:theme="@style/Lib.Finch.Theme" />
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.kernel.finch"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
         <service
             android:name=".core.ui.ClearTransactionsService"
             android:exported="false" />

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.kernel.finch.R
+import com.kernel.finch.core.data.models.MediaType
 import com.kernel.finch.core.data.models.TransactionHttpEntity
 import kotlinx.android.synthetic.main.lib_finch_fragment_transaction_payload.*
 
@@ -65,6 +66,9 @@ class TransactionPayloadFragment : Fragment(), TransactionFragment, SearchView.O
         val searchView = searchMenuItem.actionView as SearchView
         searchView.setOnQueryTextListener(this)
         searchView.setIconifiedByDefault(true)
+
+        menu.findItem(R.id.share_json)?.isVisible = transaction?.responseContentType == MediaType.APPLICATION_JSON
+
         super.onPrepareOptionsMenu(menu)
     }
 
