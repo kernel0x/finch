@@ -22,8 +22,8 @@ Add the dependency:
 
 ````java
 	dependencies {
-		debugImplementation 'com.github.kernel0x.finch:library:1.0.0'
-		releaseImplementation 'com.github.kernel0x.finch:library-no-op:1.0.0'
+		debugImplementation 'com.github.kernel0x.finch:library:1.0.1'
+		releaseImplementation 'com.github.kernel0x.finch:library-no-op:1.0.1'
 	}
 ````
 
