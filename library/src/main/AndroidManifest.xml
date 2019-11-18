@@ -9,13 +9,14 @@
             android:launchMode="singleTask"
             android:taskAffinity="${applicationId}.task"
             android:theme="@style/Lib.Finch.Theme" />
+
         <activity
             android:name=".core.ui.TransactionActivity"
             android:parentActivityName=".core.ui.MainActivity"
             android:theme="@style/Lib.Finch.Theme" />
 
         <provider
-            android:name="androidx.core.content.FileProvider"
+            android:name="com.kernel.finch.core.providers.FinchFileProvider"
             android:authorities="com.kernel.finch"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -23,8 +24,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
         <service
             android:name=".core.ui.ClearTransactionsService"
             android:exported="false" />
     </application>
+
 </manifest>
