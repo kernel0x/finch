@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.SwitchCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/finch_switch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/finch_bias_fix"
+    android:layout_marginBottom="@dimen/finch_bias_fix"
+    android:paddingStart="@dimen/finch_item_horizontal_margin"
+    android:paddingLeft="@dimen/finch_item_horizontal_margin"
+    android:paddingEnd="@dimen/finch_content_padding_medium"
+    android:paddingRight="@dimen/finch_content_padding_medium"
+    android:textColor="?android:attr/textColorPrimary"
+    app:switchPadding="@dimen/finch_content_padding_medium"
+    tools:text="Text" />

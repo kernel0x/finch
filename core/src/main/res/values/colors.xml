@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="finch_color_primary">#000</color>
+    <color name="finch_color_primary_dark">#000</color>
+    <color name="finch_color_accent">#fff</color>
+    <color name="finch_notification">#b7b7b7</color>
+    <color name="finch_status_default">#ededed</color>
+    <color name="finch_status_requested">#9E9E9E</color>
+    <color name="finch_status_error">#F44336</color>
+    <color name="finch_status_500">#B71C1C</color>
+    <color name="finch_status_400">#FF9800</color>
+    <color name="finch_status_300">#4278cb</color>
+</resources>

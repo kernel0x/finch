@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <cache-path
+        name="shared_files"
+        path="." />
+
+    <cache-path
+        name="finch_screen_captures"
+        path="finchScreenCaptures/" />
+
+    <cache-path
+        name="finch_logs"
+        path="finchLogs/" />
+
+</paths>

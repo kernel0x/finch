@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="finch_default_design_overlay_primary">24dp</dimen>
+    <dimen name="finch_default_design_overlay_secondary">80dp</dimen>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Finch.Default" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/finch_color_primary</item>
+        <item name="colorPrimaryDark">@color/finch_color_primary</item>
+        <item name="colorAccent">@color/finch_color_accent</item>
+        <item name="android:windowBackground">@color/finch_color_primary</item>
+        <item name="colorBackgroundFloating">@color/finch_color_primary</item>
+        <item name="android:textColorPrimary">@color/finch_color_accent</item>
+        <item name="android:fontFamily">@font/finch_console</item>
+        <item name="android:textViewStyle">@style/Widget.Finch.TextView</item>
+        <item name="android:buttonStyle">@style/Widget.Finch.Button</item>
+    </style>
+
+    <style name="Widget.Finch.TextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/finch_console</item>
+    </style>
+
+    <style name="Widget.Finch.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:fontFamily">@font/finch_console</item>
+    </style>
+
+</resources>

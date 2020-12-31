@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatCheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/finch_check_box"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/finch_content_padding_medium"
+    android:layout_marginLeft="@dimen/finch_content_padding_medium"
+    android:layout_marginTop="@dimen/finch_bias_fix"
+    android:layout_marginEnd="0dp"
+    android:layout_marginRight="0dp"
+    android:layout_marginBottom="@dimen/finch_bias_fix"
+    android:paddingStart="@dimen/finch_content_padding_medium"
+    android:paddingLeft="@dimen/finch_content_padding_medium"
+    android:paddingEnd="@dimen/finch_item_horizontal_margin"
+    android:paddingRight="@dimen/finch_item_horizontal_margin"
+    android:textColor="?android:attr/textColorPrimary"
+    tools:text="Text" />

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/finch_delete"
+        android:icon="@drawable/finch_ic_delete"
+        android:title="@string/finch_delete"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/finch_share"
+        android:icon="@drawable/finch_ic_share"
+        android:title="@string/finch_share"
+        app:showAsAction="ifRoom" />
+
+</menu>

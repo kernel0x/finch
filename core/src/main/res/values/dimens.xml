@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="finch_debug_menu_view_min_size">262dp</dimen>
+    <dimen name="finch_divider_size">1dp</dimen>
+    <dimen name="finch_header_text_size">22sp</dimen>
+    <dimen name="finch_bias_fix">0dp</dimen>
+    <dimen name="finch_default_design_overlay_grid">8dp</dimen>
+    <dimen name="finch_default_design_overlay_primary">16dp</dimen>
+    <dimen name="finch_default_design_overlay_secondary">72dp</dimen>
+    <dimen name="finch_content_padding_small">2dp</dimen>
+    <dimen name="finch_content_padding_medium">6dp</dimen>
+    <dimen name="finch_content_padding_large">12dp</dimen>
+    <dimen name="finch_content_padding_extra_large">16dp</dimen>
+    <dimen name="finch_gallery_item_min_size">132dp</dimen>
+    <dimen name="finch_gallery_preview_min_width">204dp</dimen>
+    <dimen name="finch_item_horizontal_margin">@dimen/finch_content_padding_extra_large</dimen>
+    <dimen name="finch_button_height">40dp</dimen>
+    <dimen name="finch_button_item_horizontal_margin">12dp</dimen>
+    <dimen name="finch_item_vertical_margin">4dp</dimen>
+    <dimen name="finch_item_horizontal_margin_large">12dp</dimen>
+</resources>

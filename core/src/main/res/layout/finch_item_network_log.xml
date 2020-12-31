@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/finch_content_padding_large">
+
+    <TextView
+        android:id="@+id/finch_code"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:padding="@dimen/finch_content_padding_small"
+        android:textColor="?android:textColorPrimary"
+        tools:text="200" />
+
+    <TextView
+        android:id="@+id/finch_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/finch_code"
+        android:layout_toRightOf="@id/finch_code"
+        android:padding="@dimen/finch_content_padding_small"
+        android:textColor="?android:textColorPrimary"
+        tools:text="GET /path/to/some/resource?goes=here" />
+
+    <TextView
+        android:id="@+id/finch_host"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/finch_path"
+        android:layout_toEndOf="@id/finch_code"
+        android:layout_toRightOf="@id/finch_code"
+        android:padding="@dimen/finch_content_padding_small"
+        android:textColor="?android:textColorPrimary"
+        tools:text="example.com" />
+
+    <ImageView
+        android:id="@+id/finch_ssl"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_below="@id/finch_path"
+        android:layout_marginTop="@dimen/finch_content_padding_small"
+        android:layout_toEndOf="@id/finch_host"
+        android:layout_toRightOf="@id/finch_host"
+        android:contentDescription="@string/finch_ssl"
+        android:src="@drawable/finch_ic_lock"
+        app:tint="?android:textColorPrimary" />
+
+    <LinearLayout
+        android:id="@+id/finch_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/finch_host"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp">
+
+        <TextView
+            android:id="@+id/finch_start"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/finch_content_padding_small"
+            android:textColor="?android:textColorPrimary"
+            tools:text="18:29:07" />
+
+        <TextView
+            android:id="@+id/finch_duration"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="@dimen/finch_content_padding_small"
+            android:textColor="?android:textColorPrimary"
+            tools:text="8023 ms" />
+
+        <TextView
+            android:id="@+id/finch_size"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="@dimen/finch_content_padding_small"
+            android:textColor="?android:textColorPrimary"
+            tools:text="16.45 KB" />
+
+    </LinearLayout>
+
+</RelativeLayout>

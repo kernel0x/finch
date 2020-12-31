@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/finch_text_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:drawablePadding="@dimen/finch_content_padding_large"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/finch_item_horizontal_margin"
+    android:paddingLeft="@dimen/finch_item_horizontal_margin"
+    android:paddingTop="@dimen/finch_item_vertical_margin"
+    android:paddingEnd="@dimen/finch_item_horizontal_margin"
+    android:paddingRight="@dimen/finch_item_horizontal_margin"
+    android:paddingBottom="@dimen/finch_item_vertical_margin"
+    android:textColor="?android:attr/textColorPrimary"
+    tools:ignore="Overdraw"
+    tools:text="Text" />

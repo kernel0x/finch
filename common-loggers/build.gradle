@@ -1,0 +1,10 @@
+apply plugin: "java-library"
+apply plugin: "kotlin"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    implementation "androidx.room:room-runtime:$versions.room"
+    implementation "com.google.code.gson:gson:2.8.5"
+}

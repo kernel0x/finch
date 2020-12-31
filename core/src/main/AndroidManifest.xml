@@ -1,0 +1,46 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kernel.finch.core">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application>
+
+        <activity
+            android:name=".presentation.detail.networklog.ContainerActivity"
+            android:label="@string/finch_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}.task" />
+
+        <activity
+            android:name=".presentation.detail.networklog.NetworkLogActivity"
+            android:parentActivityName=".presentation.detail.networklog.ContainerActivity" />
+
+        <activity
+            android:name=".presentation.gallery.GalleryActivity"
+            android:launchMode="singleTop" />
+
+        <service
+            android:name=".presentation.detail.networklog.ClearNetworkLogService"
+            android:exported="false" />
+
+        <provider
+            android:name="com.kernel.finch.core.provider.FinchFileProvider"
+            android:authorities="${applicationId}.finch.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/finch_provider_paths" />
+
+        </provider>
+
+        <service
+            android:name=".util.ScreenCaptureService"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
+
+    </application>
+
+</manifest>

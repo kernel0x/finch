@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/finch_search"
+        android:icon="@drawable/finch_ic_search"
+        android:title="@string/finch_search"
+        android:visible="false"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
+    <item
+        android:icon="@drawable/finch_ic_share"
+        android:title="@string/finch_share"
+        app:showAsAction="always">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/finch_share_text"
+                    android:title="@string/finch_share_as_text" />
+                <item
+                    android:id="@+id/finch_share_file"
+                    android:title="@string/finch_share_as_file" />
+                <item
+                    android:id="@+id/finch_share_json"
+                    android:title="@string/finch_share_as_json"
+                    android:visible="false" />
+                <item
+                    android:id="@+id/finch_share_curl"
+                    android:title="@string/finch_share_as_curl" />
+            </group>
+        </menu>
+    </item>
+</menu>

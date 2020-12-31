@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kernel.finch">
+
+    <application>
+
+        <activity
+            android:name=".implementation.DebugMenuActivity"
+            android:launchMode="singleTop" />
+
+    </application>
+
+</manifest>

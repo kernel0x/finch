@@ -1,0 +1,13 @@
+# EditorConfig: http://editorconfig.org
+root = true
+
+[*]
+insert_final_newline = true
+
+[*.{yml, json}]
+indent_style = space
+indent_size = 2
+
+[*.{kt, kts, java}]
+indent_size = 4
+max_line_length = 100

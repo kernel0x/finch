@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="finch_delete">Delete</string>
+    <string name="finch_cancel">Cancel</string>
+    <string name="finch_toggle_details">Toggle details</string>
+    <string name="finch_name">Finch</string>
+    <string name="finch_network_logger_notification_channel_name">Network logger notifications</string>
+    <string name="finch_clear">Clear</string>
+    <string name="finch_overview">Overview</string>
+    <string name="finch_request">Request</string>
+    <string name="finch_response">Response</string>
+    <string name="finch_url">URL</string>
+    <string name="finch_method">Method</string>
+    <string name="finch_protocol">Protocol</string>
+    <string name="finch_status">Status</string>
+    <string name="finch_ssl">SSL</string>
+    <string name="finch_request_time">Request time</string>
+    <string name="finch_response_time">Response time</string>
+    <string name="finch_duration">Duration</string>
+    <string name="finch_request_size">Request size</string>
+    <string name="finch_response_size">Response size</string>
+    <string name="finch_total_size">Total size</string>
+    <string name="finch_yes">Yes</string>
+    <string name="finch_no">No</string>
+    <string name="finch_share">Share</string>
+    <string name="finch_share_as_text">Share as text</string>
+    <string name="finch_share_as_curl">Share as curl command</string>
+    <string name="finch_body_omitted">(encoded or binary body omitted)</string>
+    <string name="finch_search">Search</string>
+    <string name="finch_body_unexpected_eof">\n\n--- Unexpected end of content ---</string>
+    <string name="finch_body_content_truncated">\n\n--- Content truncated ---</string>
+    <string name="finch_notification_title">Network Logger</string>
+    <string name="finch_share_as_file">Share as .txt</string>
+    <string name="finch_share_as_json">Share response as .json</string>
+    <string name="finch_apply">Apply</string>
+    <string name="finch_reset">Reset</string>
+    <string name="finch_delete_confirmation_message">Are you sure?</string>
+    <string name="finch_no_media_message">No media found</string>
+    <string name="finch_gallery">Gallery</string>
+    <string name="finch_capture_toast">Recording in progress. Tap on the notification to stop it.</string>
+    <string name="finch_capture_notification_progress_title">Recording…</string>
+    <string name="finch_capture_notification_progress_content">Tap on this notification when done</string>
+    <string name="finch_capture_notification_ready_title">Screen captured</string>
+    <string name="finch_capture_notification_ready_content">Tap on this notification to open the Gallery.</string>
+    <string name="finch_capture_notification_channel_name">Screen capture notifications</string>
+
+</resources>

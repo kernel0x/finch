@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/finch_item_horizontal_margin"
+    android:paddingLeft="@dimen/finch_item_horizontal_margin"
+    android:paddingTop="@dimen/finch_item_vertical_margin"
+    android:paddingEnd="@dimen/finch_item_horizontal_margin"
+    android:paddingRight="@dimen/finch_item_horizontal_margin"
+    android:paddingBottom="@dimen/finch_item_vertical_margin">
+
+    <TextView
+        android:id="@+id/finch_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/finch_header_text_size"
+        android:textStyle="bold"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/finch_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textStyle="bold"
+        tools:text="Subtitle" />
+
+    <TextView
+        android:id="@+id/finch_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?android:attr/textColorPrimary"
+        tools:text="Text" />
+
+</LinearLayout>

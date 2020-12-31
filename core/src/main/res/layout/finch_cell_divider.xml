@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/finch_divider_size"
+    android:layout_marginStart="@dimen/finch_item_horizontal_margin"
+    android:layout_marginLeft="@dimen/finch_item_horizontal_margin"
+    android:layout_marginTop="@dimen/finch_item_vertical_margin"
+    android:layout_marginEnd="@dimen/finch_item_horizontal_margin"
+    android:layout_marginRight="@dimen/finch_item_horizontal_margin"
+    android:layout_marginBottom="@dimen/finch_item_vertical_margin"
+    tools:background="?android:attr/textColorPrimary" />

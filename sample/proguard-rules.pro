@@ -1,3 +1,1 @@
--dontwarn okio.**
--dontwarn retrofit2.**
--keep class com.kernel.finch.core.data.**
+
