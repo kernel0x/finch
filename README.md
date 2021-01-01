@@ -43,40 +43,56 @@ Finch.initialize(this)
 ````
 Various customizations are set through the Configuration object.
 
-Next, you need to add which components you want to display in the debug menu. Optionally, you can additionally configure logging and interception network events.
+Next, you need to add which components you want to display in the debug menu. Optionally, you can additionally configure logging and interception network events (with OkHttp).
+
+### Logging
+
+To add log messages in Debug Menu simple calling Finch.log() and add FinchLogger to Configuration object.
+
+### OkHttp
+
+Add FinchOkHttpLogger.logger to the method addInterceptor in building OkHttp Client and add FinchOkHttpLogger to Configuration object.
+
+```java
+OkHttpClient.Builder()
+    .addInterceptor(FinchOkHttpLogger.logger as Interceptor)
+    .build()
+```
+
+### Example initialize
 
 Here is a minimal example that should work for most projects
 
 ```java
 Finch.initialize(
-        application = this,
-        configuration = Configuration(
-                logger = FinchLogger,
-                networkLoggers = listOf(FinchOkHttpLogger)
+    application = this,
+    configuration = Configuration(
+        logger = FinchLogger,
+        networkLoggers = listOf(FinchOkHttpLogger)
+    ),
+    components = arrayOf(
+        Header(
+            title = getString(R.string.app_name),
+            subtitle = BuildConfig.APPLICATION_ID,
+            text = "${BuildConfig.BUILD_TYPE} v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
         ),
-        components = arrayOf(
-                Header(
-                        title = getString(R.string.app_name),
-                        subtitle = BuildConfig.APPLICATION_ID,
-                        text = "${BuildConfig.BUILD_TYPE} v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
-                ),
-                Padding(),
-                Label("Tools", Label.Type.HEADER),
-                DesignOverlay(),
-                AnimationSpeed(),
-                ScreenCaptureToolbox(),
-                Divider(),
-                Label("Logs", Label.Type.HEADER),
-                LifecycleLogs(),
-                NetworkLogs(),
-                Logs(),
-                Divider(),
-                Label("Other", Label.Type.HEADER),
-                DeviceInfo(),
-                AppInfo(),
-                DeveloperOptions(),
-                ForceCrash()
-        )
+        Padding(),
+        Label("Tools", Label.Type.HEADER),
+        DesignOverlay(),
+        AnimationSpeed(),
+        ScreenCaptureToolbox(),
+        Divider(),
+        Label("Logs", Label.Type.HEADER),
+        LifecycleLogs(),
+        NetworkLogs(),
+        Logs(),
+        Divider(),
+        Label("Other", Label.Type.HEADER),
+        DeviceInfo(),
+        AppInfo(),
+        DeveloperOptions(),
+        ForceCrash()
+    )
 )
 ```
 
