@@ -26,12 +26,12 @@ Pick a UI implementation and add the dependency:
 
 ````java
 dependencies {
-    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.0.0'
-    releaseImplementation 'com.github.kernel0x.finch:noop:2.0.0'
-    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.0.0'
-    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.0.0'
-    debugImplementation 'com.github.kernel0x.finch:log:2.0.0'
-    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.0.0'
+    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.0.1'
+    releaseImplementation 'com.github.kernel0x.finch:noop:2.0.1'
+    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.0.1'
+    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.0.1'
+    debugImplementation 'com.github.kernel0x.finch:log:2.0.1'
+    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.0.1'
 }
 ````
 
