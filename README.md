@@ -1,7 +1,7 @@
 # Finch
 Finch offers a customizable debug menu for Android app development. It does not affect production code. Developers can easily add their own custom debugging features with simple steps.
 
-![Finch](assets/finch.gif)
+<img src="assets/finch.gif" width="282" height="518"/>
 
 ## Gradle Dependency
 
