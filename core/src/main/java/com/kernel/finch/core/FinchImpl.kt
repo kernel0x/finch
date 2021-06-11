@@ -1,10 +1,14 @@
 package com.kernel.finch.core
 
 import android.app.Application
+import android.content.Context
+import android.content.Context.SENSOR_SERVICE
 import android.graphics.Canvas
+import android.hardware.SensorManager
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -27,13 +31,14 @@ import com.kernel.finch.core.presentation.detail.log.dialog.LogDetailDialogFragm
 import com.kernel.finch.core.presentation.detail.networklog.NetworkLogActivity
 import com.kernel.finch.core.presentation.gallery.MediaPreviewDialogFragment
 import com.kernel.finch.core.util.FinchUtil
+import com.kernel.finch.core.util.ShakeDetector
 import com.kernel.finch.core.util.extension.hideKeyboard
 import com.kernel.finch.utils.view.GestureBlockingRecyclerView
 import kotlin.properties.Delegates
 import kotlin.reflect.KClass
 
 @Suppress("TooManyFunctions")
-class FinchImpl(val uiManager: UiManager) : Finch {
+class FinchImpl(val uiManager: UiManager) : Finch, ShakeDetector.Listener {
 
     override var isUiEnabled by Delegates.observable(true) { _, _, newValue ->
         if (!newValue) {
@@ -102,6 +107,11 @@ class FinchImpl(val uiManager: UiManager) : Finch {
             }
             .build()
         set(*components)
+        val sensorManager = application.getSystemService(SENSOR_SERVICE) as SensorManager?
+        val sd = ShakeDetector(this)
+        if (sensorManager != null) {
+            sd.start(sensorManager)
+        }
     }
 
     override fun show() = (currentActivity?.let { currentActivity ->
@@ -246,6 +256,10 @@ class FinchImpl(val uiManager: UiManager) : Finch {
         currentActivity?.let {
             it.startActivity(FinchUtil.getLaunchIntent(it))
         }
+    }
+
+    override fun hearShake() {
+        show()
     }
 
     internal fun applyPendingChanges() {
