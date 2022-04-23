@@ -43,7 +43,11 @@ internal class NotificationManager(private val context: Context) {
                         context,
                         0,
                         FinchUtil.getLaunchIntent(context),
-                        0
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                        } else {
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                        }
                     )
                 )
                 .setLocalOnly(true)
@@ -76,8 +80,16 @@ internal class NotificationManager(private val context: Context) {
         get() {
             val clearTitle = context.getString(R.string.finch_clear)
             val deleteIntent = Intent(context, ClearNetworkLogService::class.java)
-            val intent =
-                PendingIntent.getService(context, 11, deleteIntent, PendingIntent.FLAG_ONE_SHOT)
+            val intent = PendingIntent.getService(
+                context,
+                11,
+                deleteIntent,
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_ONE_SHOT
+                } else {
+                    PendingIntent.FLAG_ONE_SHOT
+                }
+            )
             return NotificationCompat.Action(R.drawable.finch_ic_delete, clearTitle, intent)
         }
 

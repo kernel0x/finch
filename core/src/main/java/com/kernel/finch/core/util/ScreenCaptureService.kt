@@ -298,7 +298,11 @@ internal class ScreenCaptureService : Service() {
                             this@ScreenCaptureService,
                             0,
                             Intent(this@ScreenCaptureService, GalleryActivity::class.java),
-                            0
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                            } else {
+                                PendingIntent.FLAG_UPDATE_CURRENT
+                            }
                         )
                     )
                     setStyle(
