@@ -5,10 +5,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.net.Uri
-import android.os.Build
 import android.util.TypedValue
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import com.kernel.finch.FinchCore
 import com.kernel.finch.core.OverlayFragment
@@ -52,7 +50,6 @@ internal fun Activity.shareFiles(uris: List<Uri>) {
     }, null))
 }
 
-@Suppress("BlockingMethodInNonBlockingContext")
 internal suspend fun Activity.createAndShareFile(fileName: String, content: String) =
     withContext(Dispatchers.IO) {
         val file = createLogFile(fileName)
@@ -63,11 +60,10 @@ internal suspend fun Activity.createAndShareFile(fileName: String, content: Stri
                 close()
             }
             shareFile(getUriForFile(file), "text/plain")
-        } catch (e: IOException) {
+        } catch (_: IOException) {
         }
     }
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 internal fun Activity.takeScreenshotWithMediaProjectionManager(fileName: String) {
     (FinchCore.implementation.uiManager.findOverlayFragment(this as? FragmentActivity?) as? OverlayFragment?).let { overlayFragment ->
         overlayFragment?.startCapture(false, fileName)
@@ -75,7 +71,6 @@ internal fun Activity.takeScreenshotWithMediaProjectionManager(fileName: String)
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 internal fun Activity.recordScreenWithMediaProjectionManager(fileName: String) {
     (FinchCore.implementation.uiManager.findOverlayFragment(this as? FragmentActivity?) as? OverlayFragment?).let { overlayFragment ->
         overlayFragment?.startCapture(true, fileName)

@@ -2,12 +2,9 @@ package com.kernel.finch.core.manager
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.kernel.finch.FinchCore
 import com.kernel.finch.core.presentation.gallery.GalleryActivity
 import com.kernel.finch.core.util.extension.recordScreenWithMediaProjectionManager
-import com.kernel.finch.core.util.extension.takeScreenshotWithDrawingCache
 import com.kernel.finch.core.util.extension.takeScreenshotWithMediaProjectionManager
 import com.kernel.finch.core.util.performOnHide
 
@@ -28,16 +25,11 @@ internal class ScreenCaptureManager {
             currentActivity?.run {
                 val fileName =
                     "${behavior.imageFileNameFormatter(System.currentTimeMillis())}$IMAGE_EXTENSION"
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    takeScreenshotWithMediaProjectionManager(fileName)
-                } else {
-                    takeScreenshotWithDrawingCache(fileName)
-                }
+                takeScreenshotWithMediaProjectionManager(fileName)
             }
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun recordScreen(callback: (Uri?) -> Unit) {
         if (onScreenCaptureReady != null) {
             callback(null)

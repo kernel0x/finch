@@ -2,8 +2,6 @@ package com.kernel.finch.common.contracts
 
 import android.app.Application
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import com.kernel.finch.common.contracts.component.Component
@@ -101,7 +99,6 @@ interface Finch {
 
     fun takeScreenshot(callback: (Uri?) -> Unit) = callback.invoke(null)
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun recordScreen(callback: (Uri?) -> Unit) = callback.invoke(null)
 
     fun openGallery() = Unit

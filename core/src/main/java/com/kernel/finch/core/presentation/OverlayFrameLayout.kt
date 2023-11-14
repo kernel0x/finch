@@ -12,8 +12,8 @@ class OverlayFrameLayout @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    override fun dispatchDraw(canvas: Canvas?) {
+    override fun dispatchDraw(canvas: Canvas) {
         super.dispatchDraw(canvas)
-        canvas?.let { FinchCore.implementation.notifyOverlayListenersOnDrawOver(canvas) }
+        FinchCore.implementation.notifyOverlayListenersOnDrawOver(canvas)
     }
 }

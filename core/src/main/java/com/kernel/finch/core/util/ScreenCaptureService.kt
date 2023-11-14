@@ -1,6 +1,8 @@
 package com.kernel.finch.core.util
 
 import android.app.*
+import android.app.PendingIntent.FLAG_IMMUTABLE
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.hardware.display.DisplayManager
@@ -15,7 +17,6 @@ import android.util.DisplayMetrics
 import android.view.Surface
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.Lifecycle
 import com.kernel.finch.FinchCore
@@ -32,7 +33,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 internal class ScreenCaptureService : Service() {
 
     private var projection: MediaProjection? = null
@@ -224,7 +224,7 @@ internal class ScreenCaptureService : Service() {
                                     this@ScreenCaptureService,
                                     ScreenCaptureService::class.java
                                 ).setAction(ACTION_DONE),
-                                0
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) FLAG_IMMUTABLE else 0
                             )
                         )
                         setStyle(
@@ -299,9 +299,9 @@ internal class ScreenCaptureService : Service() {
                             0,
                             Intent(this@ScreenCaptureService, GalleryActivity::class.java),
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                                FLAG_IMMUTABLE
                             } else {
-                                PendingIntent.FLAG_UPDATE_CURRENT
+                                FLAG_UPDATE_CURRENT
                             }
                         )
                     )

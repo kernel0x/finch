@@ -15,9 +15,9 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private var cb: Callback<Void> = object : Callback<Void> {
-        override fun onResponse(call: Call<Void>?, response: Response<Void>?) {}
-        override fun onFailure(call: Call<Void>?, t: Throwable?) {
-            t?.printStackTrace()
+        override fun onResponse(call: Call<Void>, response: Response<Void>) {}
+        override fun onFailure(call: Call<Void>, t: Throwable) {
+            t.printStackTrace()
         }
     }
 
@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
             .build()
         val api = ApiService.getInstance(okHttpClient)
         api.get().enqueue(cb)
-        api.post(ApiService.Data("ololo")).enqueue(cb)
-        api.patch(ApiService.Data("ololo")).enqueue(cb)
-        api.put(ApiService.Data("ololo")).enqueue(cb)
+        api.post(ApiService.Data()).enqueue(cb)
+        api.patch(ApiService.Data()).enqueue(cb)
+        api.put(ApiService.Data()).enqueue(cb)
         api.delete().enqueue(cb)
         api.delay(4).enqueue(cb)
         api.delay(12).enqueue(cb)

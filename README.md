@@ -11,7 +11,7 @@ Add it in your root build.gradle at the end of repositories:
 allprojects {
     repositories {
         ...
-        maven { url "https://jitpack.io" }
+        mavenCentral()
     }
 }
 ````
@@ -26,12 +26,12 @@ Pick a UI implementation and add the dependency:
 
 ````java
 dependencies {
-    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.0.2'
-    releaseImplementation 'com.github.kernel0x.finch:noop:2.0.2'
-    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.0.2'
-    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.0.2'
-    debugImplementation 'com.github.kernel0x.finch:log:2.0.2'
-    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.0.2'
+    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.1.0'
+    releaseImplementation 'com.github.kernel0x.finch:noop:2.1.0'
+    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.1.0'
+    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.1.0'
+    debugImplementation 'com.github.kernel0x.finch:log:2.1.0'
+    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.1.0'
 }
 ````
 
@@ -41,7 +41,6 @@ Initialize an instance of Finch (preferably in the Application's onCreate() meth
 ````java
 Finch.initialize(this)
 ````
-Various customizations are set through the Configuration object.
 
 Next, you need to add which components you want to display in the debug menu. Optionally, you can additionally configure logging and interception network events (with OkHttp).
 

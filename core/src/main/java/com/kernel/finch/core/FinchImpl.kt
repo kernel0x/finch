@@ -3,13 +3,12 @@ package com.kernel.finch.core
 import android.app.Application
 import android.graphics.Canvas
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import coil.ComponentRegistry
 import coil.ImageLoader
-import coil.fetch.VideoFrameFileFetcher
+import coil.decode.VideoFrameDecoder
 import com.kernel.finch.FinchCore
 import com.kernel.finch.common.contracts.Finch
 import com.kernel.finch.common.contracts.component.Component
@@ -97,9 +96,9 @@ class FinchImpl(val uiManager: UiManager) : Finch {
         configuration.logger?.register(::log, ::clearLogs)
         configuration.networkLoggers.forEach { it.register(::logNetworkEvent, ::clearNetworkLogs) }
         videoThumbnailLoader = ImageLoader.Builder(application)
-            .componentRegistry {
-                add(VideoFrameFileFetcher(application))
-            }
+            .components(fun ComponentRegistry.Builder.() {
+                add(VideoFrameDecoder.Factory())
+            })
             .build()
         set(*components)
     }
@@ -209,7 +208,6 @@ class FinchImpl(val uiManager: UiManager) : Finch {
     override fun takeScreenshot(callback: (Uri?) -> Unit) =
         screenCaptureManager.takeScreenshot(callback)
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun recordScreen(callback: (Uri?) -> Unit) =
         screenCaptureManager.recordScreen(callback)
 
