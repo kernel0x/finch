@@ -11,7 +11,6 @@ android {
         versionName versions.libraryVersion
         consumerProguardFiles "consumer-rules.pro"
     }
-    namespace 'com.kernel.finch'
 }
 
 dependencies {
