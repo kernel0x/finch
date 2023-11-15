@@ -8,10 +8,11 @@ Finch offers a customizable debug menu for Android app development. It does not 
 Add it in your root build.gradle at the end of repositories:
 
 ````java
-allprojects {
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        ...
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 ````
@@ -26,12 +27,12 @@ Pick a UI implementation and add the dependency:
 
 ````java
 dependencies {
-    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.1.0'
-    releaseImplementation 'com.github.kernel0x.finch:noop:2.1.0'
-    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.1.0'
-    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.1.0'
-    debugImplementation 'com.github.kernel0x.finch:log:2.1.0'
-    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.1.0'
+    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.1.1'
+    releaseImplementation 'com.github.kernel0x.finch:noop:2.1.1'
+    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.1.1'
+    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.1.1'
+    debugImplementation 'com.github.kernel0x.finch:log:2.1.1'
+    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.1.1'
 }
 ````
 
