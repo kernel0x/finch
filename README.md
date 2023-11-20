@@ -42,6 +42,7 @@ Initialize an instance of Finch (preferably in the Application's onCreate() meth
 ````java
 Finch.initialize(this)
 ````
+Various customizations are set through the Configuration object.
 
 Next, you need to add which components you want to display in the debug menu. Optionally, you can additionally configure logging and interception network events (with OkHttp).
 
@@ -55,7 +56,7 @@ Add FinchOkHttpLogger.logger to the method addInterceptor in building OkHttp Cli
 
 ```java
 OkHttpClient.Builder()
-    .addInterceptor(FinchOkHttpLogger.logger as Interceptor)
+    .addInterceptor(FinchOkHttpLogger.logger as? Interceptor ?: Interceptor { it.proceed(it.request()) })
     .build()
 ```
 
