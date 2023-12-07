@@ -97,6 +97,32 @@ Finch.initialize(
 )
 ```
 
+### Components
+[CheckBox](/common/src/main/java/com/kernel/finch/components/CheckBox.kt)
+[Divider](/common/src/main/java/com/kernel/finch/components/Divider.kt)
+[ItemList](/common/src/main/java/com/kernel/finch/components/ItemList.kt)
+[KeyValueList](/common/src/main/java/com/kernel/finch/components/KeyValueList.kt)
+[Label](/common/src/main/java/com/kernel/finch/components/Label.kt)
+[LongText](/common/src/main/java/com/kernel/finch/components/LongText.kt)
+[MultipleSelectionList](/common/src/main/java/com/kernel/finch/components/MultipleSelectionList.kt)
+[Padding](/common/src/main/java/com/kernel/finch/components/Padding.kt)
+[ProgressBar](/common/src/main/java/com/kernel/finch/components/ProgressBar.kt)
+[SingleSelectionList](/common/src/main/java/com/kernel/finch/components/SingleSelectionList.kt)
+[Slider](/common/src/main/java/com/kernel/finch/components/Slider.kt)
+[Switch](/common/src/main/java/com/kernel/finch/components/Switch.kt)
+[TextInput](/common/src/main/java/com/kernel/finch/components/TextInput.kt)
+[AnimationSpeed](/common/src/main/java/com/kernel/finch/components/special/AnimationSpeed.kt)
+[AppInfo](/common/src/main/java/com/kernel/finch/components/special/AppInfo.kt)
+[DesignOverlay](/common/src/main/java/com/kernel/finch/components/special/DesignOverlay.kt)
+[DeveloperOptions](/common/src/main/java/com/kernel/finch/components/special/DeveloperOptions.kt)
+[DeviceInfo](/common/src/main/java/com/kernel/finch/components/special/DeviceInfo.kt)
+[ForceCrash](/common/src/main/java/com/kernel/finch/components/special/ForceCrash.kt)
+[Header](/common/src/main/java/com/kernel/finch/components/special/Header.kt)
+[LifecycleLogs](/common/src/main/java/com/kernel/finch/components/special/LifecycleLogs.kt)
+[Logs](/common/src/main/java/com/kernel/finch/components/special/Logs.kt)
+[LoremIpsumGenerator](/common/src/main/java/com/kernel/finch/components/special/LoremIpsumGenerator.kt)
+[NetworkLogs](/common/src/main/java/com/kernel/finch/components/special/NetworkLogs.kt)
+
 ## Releases
 
 Checkout the [Releases](https://github.com/kernel0x/finch/releases) tab for all release info.
