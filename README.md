@@ -29,8 +29,13 @@ Pick a UI implementation and add the dependency:
 dependencies {
     debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.2.1'
     releaseImplementation 'com.github.kernel0x.finch:noop:2.2.1'
+    // optional only for OkHttp
     debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.2.1'
     releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.2.1'
+    // optional only for GRPC
+    debugImplementation 'com.github.kernel0x.finch:log-grpc:2.2.1'
+    releaseImplementation 'com.github.kernel0x.finch:log-grpc-noop:2.2.1'
+    // optional only for logs
     debugImplementation 'com.github.kernel0x.finch:log:2.2.1'
     releaseImplementation 'com.github.kernel0x.finch:log-noop:2.2.1'
 }
