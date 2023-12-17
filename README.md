@@ -55,6 +55,19 @@ Next, you need to add which components you want to display in the debug menu. Op
 
 To add log messages in Debug Menu simple calling Finch.log() and add FinchLogger to Configuration object.
 
+```java
+Finch.log("message")
+```
+```java
+Finch.initialize(
+    application = this,
+    configuration = Configuration(
+        logger = FinchLogger,
+        ...
+    ),
+)
+```
+
 ### OkHttp
 
 Add FinchOkHttpLogger.logger to the method addInterceptor in building OkHttp Client and add FinchOkHttpLogger to Configuration object.
