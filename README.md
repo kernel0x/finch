@@ -59,6 +59,47 @@ OkHttpClient.Builder()
     .addInterceptor(FinchOkHttpLogger.logger as? Interceptor ?: Interceptor { it.proceed(it.request()) })
     .build()
 ```
+```java
+Finch.initialize(
+    application = this,
+    configuration = Configuration(
+        networkLoggers = listOf(FinchOkHttpLogger),
+        ...
+    ),
+)
+```
+
+### Grpc
+
+Add FinchGrpcLogger.logger to the method intercept in building ManagedChannel and add FinchGrpcLogger to Configuration object.
+
+```java
+ManagedChannelBuilder.forAddress(networkConfig.hostname, networkConfig.port)
+    .intercept(FinchGrpcLogger.logger as? ClientInterceptor ?: object : ClientInterceptor {
+        override fun <ReqT : Any?, RespT : Any?> interceptCall(
+            method: MethodDescriptor<ReqT, RespT>?,
+            callOptions: CallOptions?,
+            next: Channel?
+        ): ClientCall<ReqT, RespT> {
+            return object : ForwardingClientCall.SimpleForwardingClientCall<ReqT, RespT>(
+                next?.newCall(
+                    method,
+                    callOptions
+                )
+            ) {}
+        }
+    })
+    .build()
+```
+```java
+Finch.initialize(
+    application = this,
+    configuration = Configuration(
+        networkLoggers = listOf(FinchGrpcLogger),
+        ...
+    ),
+)
+```
 
 ### Example initialize
 
@@ -96,6 +137,45 @@ Finch.initialize(
     )
 )
 ```
+
+### Common cases
+
+#### Backend environment
+```java
+data class Environment(
+    val type: Type,
+    override val title: Text = Text.CharSequence(type.name)
+) : FinchListItem
+
+enum class Type {
+    TEST,
+    PROD
+}
+```
+```java
+SingleSelectionList(
+    title = "Backend environment",
+    items = listOf(Environment(Type.TEST), Environment(Type.PROD)),
+    initiallySelectedItemId = Type.TEST.name,
+    isValuePersisted = true,
+    onSelectionChanged = {
+        when (it?.type) {
+            Type.TEST -> {
+                ...
+            }
+
+            Type.PROD -> {
+                ...
+            }
+
+            else -> {
+                // nothing
+            }
+        }
+    }
+),
+```
+
 
 ### Components
 [CheckBox](/common/src/main/java/com/kernel/finch/components/CheckBox.kt)

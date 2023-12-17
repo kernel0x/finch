@@ -19,4 +19,5 @@ ext.versions = [
         retrofit          : '2.9.0',
         leakCanary        : '2.2',
         coil              : '2.0.0',
+        grpc              : '1.54.1',
 ]
