@@ -34,7 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:tabTextColor="@color/finch_color_accent" />
+            app:tabIndicatorColor="?attr/colorAccent"
+            app:tabSelectedTextColor="?attr/colorAccent"
+            app:tabTextColor="?attr/colorAccent" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
