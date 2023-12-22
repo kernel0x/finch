@@ -82,12 +82,14 @@ internal class FinchClientInterceptor : ClientInterceptor {
     private fun toHttpHeaderList(headers: Metadata): List<HeaderHttpModel> {
         val httpHeaders = ArrayList<HeaderHttpModel>()
         headers.keys().forEach { key ->
-            httpHeaders.add(
-                HeaderHttpModel(
-                    key,
-                    headers.get(Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER)) ?: ""
+            if (!key.endsWith(Metadata.BINARY_HEADER_SUFFIX)) {
+                httpHeaders.add(
+                    HeaderHttpModel(
+                        key,
+                        headers.get(Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER)) ?: ""
+                    )
                 )
-            )
+            }
         }
         return httpHeaders
     }
