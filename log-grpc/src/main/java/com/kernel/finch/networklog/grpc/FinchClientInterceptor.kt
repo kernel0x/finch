@@ -30,8 +30,9 @@ internal class FinchClientInterceptor : ClientInterceptor {
                 val networkLog = NetworkLogEntity()
                 networkLog.requestDate = System.currentTimeMillis()
                 networkLog.method = methodDescriptor.type.name
+                networkLog.protocol = "h2"
                 networkLog.setUrl(
-                    url = "https://" + channel.authority() + methodDescriptor.fullMethodName,
+                    url = "https://" + channel.authority() + "/" + methodDescriptor.fullMethodName,
                     host = channel.authority(),
                     path = methodDescriptor.fullMethodName,
                     scheme = "https"
@@ -49,11 +50,6 @@ internal class FinchClientInterceptor : ClientInterceptor {
                             responseListener
                         ) {
                         override fun onMessage(message: RespT) {
-                            val duration =
-                                TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs)
-                            networkLog.responseDate = System.currentTimeMillis()
-                            networkLog.duration = duration
-                            networkLog.protocol = "h2"
                             networkLog.responseBody = message.toString()
                             FinchGrpcLogger.logNetworkEvent(networkLog)
                             super.onMessage(message)
@@ -66,8 +62,15 @@ internal class FinchClientInterceptor : ClientInterceptor {
                         }
 
                         override fun onClose(status: Status, trailers: Metadata) {
+                            val duration =
+                                TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs)
+                            networkLog.responseDate = System.currentTimeMillis()
+                            networkLog.duration = duration
                             networkLog.responseCode = status.code.value()
-                            networkLog.responseMessage = status.description ?: ""
+                            networkLog.responseMessage = status.code.name
+                            if (status.description?.isNotEmpty() == true) {
+                                networkLog.responseMessage += "(" + status.description + ")"
+                            }
                             networkLog.setResponseHeaders(toHttpHeaderList(trailers))
                             FinchGrpcLogger.logNetworkEvent(networkLog)
                             super.onClose(status, trailers)
