@@ -1,5 +1,7 @@
 package com.kernel.finch.networklog.grpc
 
+import com.google.protobuf.MessageOrBuilder
+import com.google.protobuf.TextFormat
 import com.kernel.finch.common.loggers.data.models.HeaderHttpModel
 import com.kernel.finch.common.loggers.data.models.NetworkLogEntity
 import io.grpc.CallOptions
@@ -26,8 +28,8 @@ internal class FinchClientInterceptor : ClientInterceptor {
                 callOptions
             )
         ) {
+            val networkLog = NetworkLogEntity()
             override fun start(responseListener: Listener<RespT>, headers: Metadata) {
-                val networkLog = NetworkLogEntity()
                 networkLog.requestDate = System.currentTimeMillis()
                 networkLog.method = methodDescriptor.type.name
                 networkLog.protocol = "h2"
@@ -50,7 +52,11 @@ internal class FinchClientInterceptor : ClientInterceptor {
                             responseListener
                         ) {
                         override fun onMessage(message: RespT) {
-                            networkLog.responseBody = message.toString()
+                            networkLog.responseBody =
+                                TextFormat.printer().escapingNonAscii(false).printToString(
+                                    message as MessageOrBuilder
+                                )
+                            networkLog.responseCode = 0
                             FinchGrpcLogger.logNetworkEvent(networkLog)
                             super.onMessage(message)
                         }
@@ -69,7 +75,7 @@ internal class FinchClientInterceptor : ClientInterceptor {
                             networkLog.responseCode = status.code.value()
                             networkLog.responseMessage = status.code.name
                             if (status.description?.isNotEmpty() == true) {
-                                networkLog.responseMessage += "(" + status.description + ")"
+                                networkLog.responseMessage += " (" + status.description + ")"
                             }
                             networkLog.setResponseHeaders(toHttpHeaderList(trailers))
                             FinchGrpcLogger.logNetworkEvent(networkLog)
@@ -79,6 +85,14 @@ internal class FinchClientInterceptor : ClientInterceptor {
                     headers
                 )
             }
+
+            override fun sendMessage(message: ReqT) {
+                networkLog.requestBody = TextFormat.printer().escapingNonAscii(false).printToString(
+                    message as MessageOrBuilder
+                )
+                FinchGrpcLogger.logNetworkEvent(networkLog)
+                super.sendMessage(message)
+            }
         }
     }
 
@@ -86,12 +100,15 @@ internal class FinchClientInterceptor : ClientInterceptor {
         val httpHeaders = ArrayList<HeaderHttpModel>()
         headers.keys().forEach { key ->
             if (!key.endsWith(Metadata.BINARY_HEADER_SUFFIX)) {
-                httpHeaders.add(
-                    HeaderHttpModel(
-                        key,
-                        headers.get(Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER)) ?: ""
+                runCatching {
+                    httpHeaders.add(
+                        HeaderHttpModel(
+                            key,
+                            headers.get(Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER))
+                                ?: ""
+                        )
                     )
-                )
+                }
             }
         }
         return httpHeaders
