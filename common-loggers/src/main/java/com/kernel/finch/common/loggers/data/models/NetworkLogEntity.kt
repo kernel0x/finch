@@ -31,7 +31,7 @@ data class NetworkLogEntity(
     var responseBody: String = "",
     var responseContentLength: Long = 0,
     var responseContentType: String = "",
-    var responseCode: Int = 0,
+    var responseCode: Int = -1,
     var responseMessage: String = "",
     var responseHeaders: String = "",
     var responseBodyIsPlainText: Boolean = true,
@@ -88,7 +88,7 @@ data class NetworkLogEntity(
     fun getStatus(): Status {
         return when {
             error != null -> Status.FAIL
-            responseCode == 0 -> Status.PROGRESS
+            responseCode == -1 -> Status.PROGRESS
             else -> Status.COMPLETE
         }
     }

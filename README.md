@@ -27,17 +27,17 @@ Pick a UI implementation and add the dependency:
 
 ````java
 dependencies {
-    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.2.5'
-    releaseImplementation 'com.github.kernel0x.finch:noop:2.2.5'
+    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.2.6'
+    releaseImplementation 'com.github.kernel0x.finch:noop:2.2.6'
     // optional only for OkHttp
-    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.2.5'
-    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.2.5'
+    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.2.6'
+    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.2.6'
     // optional only for GRPC
-    debugImplementation 'com.github.kernel0x.finch:log-grpc:2.2.5'
-    releaseImplementation 'com.github.kernel0x.finch:log-grpc-noop:2.2.5'
+    debugImplementation 'com.github.kernel0x.finch:log-grpc:2.2.6'
+    releaseImplementation 'com.github.kernel0x.finch:log-grpc-noop:2.2.6'
     // optional only for logs
-    debugImplementation 'com.github.kernel0x.finch:log:2.2.5'
-    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.2.5'
+    debugImplementation 'com.github.kernel0x.finch:log:2.2.6'
+    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.2.6'
 }
 ````
 
@@ -220,6 +220,12 @@ SingleSelectionList(
 [Logs](/common/src/main/java/com/kernel/finch/components/special/Logs.kt)
 [LoremIpsumGenerator](/common/src/main/java/com/kernel/finch/components/special/LoremIpsumGenerator.kt)
 [NetworkLogs](/common/src/main/java/com/kernel/finch/components/special/NetworkLogs.kt)
+
+### Proguard
+```java
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+```
 
 ## Releases
 

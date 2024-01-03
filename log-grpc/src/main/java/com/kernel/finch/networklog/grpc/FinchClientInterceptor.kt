@@ -56,7 +56,6 @@ internal class FinchClientInterceptor : ClientInterceptor {
                                 TextFormat.printer().escapingNonAscii(false).printToString(
                                     message as MessageOrBuilder
                                 )
-                            networkLog.responseCode = 0
                             FinchGrpcLogger.logNetworkEvent(networkLog)
                             super.onMessage(message)
                         }
