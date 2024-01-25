@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken
 import com.kernel.finch.common.loggers.data.models.NetworkLogEntity.Companion.TABLE_NAME
 import com.kernel.finch.common.loggers.utils.FormatUtil
 import com.kernel.finch.common.loggers.utils.GsonUtil
-import java.util.*
+import java.util.Locale
 
 @Suppress("TooManyFunctions")
 @Keep
@@ -71,6 +71,15 @@ data class NetworkLogEntity(
 
     fun setResponseHeaders(headers: List<HeaderHttpModel>) {
         responseHeaders = GsonUtil.instance.toJson(headers)
+    }
+
+    fun addResponseHeaders(headers: List<HeaderHttpModel>) {
+        setResponseHeaders(
+            arrayListOf<HeaderHttpModel>().apply {
+                addAll(getResponseHeadersAsList() ?: emptyList())
+                addAll(headers)
+            }
+        )
     }
 
     fun getResponseHeadersAsList(): List<HeaderHttpModel>? {

@@ -76,7 +76,7 @@ internal class FinchClientInterceptor : ClientInterceptor {
                             if (status.description?.isNotEmpty() == true) {
                                 networkLog.responseMessage += " (" + status.description + ")"
                             }
-                            networkLog.setResponseHeaders(toHttpHeaderList(trailers))
+                            networkLog.addResponseHeaders(toHttpHeaderList(trailers))
                             FinchGrpcLogger.logNetworkEvent(networkLog)
                             super.onClose(status, trailers)
                         }
