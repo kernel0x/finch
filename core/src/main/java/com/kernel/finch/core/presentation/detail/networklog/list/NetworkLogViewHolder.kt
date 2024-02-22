@@ -77,6 +77,10 @@ internal class NetworkLogViewHolder(container: ViewGroup) : RecyclerView.ViewHol
                 view.context,
                 R.color.finch_status_300
             )
+            networkLog.responseCode in 1..16 -> ContextCompat.getColor(
+                view.context,
+                R.color.finch_status_500
+            )
             else -> ContextCompat.getColor(view.context, R.color.finch_status_default)
         }
         codeTextView.setTextColor(color)
