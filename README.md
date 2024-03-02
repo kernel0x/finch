@@ -194,6 +194,75 @@ SingleSelectionList(
 ),
 ```
 
+#### Feature Toggles
+```java
+fun Application.initializeDebugMenu(
+    featureManager: FeatureManager
+) {
+    val toggles = featureManager.getAll().map {
+        Switch(
+            text = it.description,
+            initialValue = it.isEnabled(),
+            isEnabled = true,
+            onValueChanged = { value ->
+                featureManager.save(it.key, value)
+                if (!it.canChangedInRuntime) {
+                    Toast.makeText(this, "Restart app to apply changes!", Toast.LENGTH_LONG).show()
+                }
+            }
+        )
+    }
+    Finch.initialize(
+        ...
+        components = arrayOf(
+            ...
+            Divider(),
+            Label("Feature Toggles", Label.Type.HEADER),
+            Switch(
+                text = "Show",
+                initialValue = false,
+                isEnabled = true,
+                id = "feature_toggles",
+                onValueChanged = {
+                    if (it) {
+                        Finch.add(
+                            components = toggles.toTypedArray(),
+                            position = Position.Below("feature_toggles")
+                        )
+                    } else {
+                        toggles.forEach { item ->
+                            Finch.remove(item.id)
+                        }
+                    }
+                }
+            ),
+            ...
+        )
+    )
+}
+```
+
+#### Logs
+```java
+class LogTree : Timber.Tree() {
+    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+        FinchLogger.log(message)
+    }
+}
+```
+```java
+fun Application.initializeDebugMenu() {
+    ...
+    Timber.plant(LogTree())
+    Finch.initialize(
+        application = this,
+        configuration = Configuration(
+            logger = FinchLogger,
+        ),
+        ...
+    )
+}
+```
 
 ### Components
 [CheckBox](/common/src/main/java/com/kernel/finch/components/CheckBox.kt)
