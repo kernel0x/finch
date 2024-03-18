@@ -102,7 +102,7 @@ data class NetworkLogEntity(
         }
     }
 
-    fun getDurationString(): String? {
+    fun getDurationString(): String {
         return "$duration ms"
     }
 
@@ -110,7 +110,7 @@ data class NetworkLogEntity(
         return formatBytes(requestContentLength)
     }
 
-    fun getResponseSizeString(): String? {
+    fun getResponseSizeString(): String {
         return formatBytes(responseContentLength)
     }
 
@@ -135,15 +135,15 @@ data class NetworkLogEntity(
     }
 
     fun isSsl(): Boolean {
-        return scheme.toLowerCase(Locale.getDefault()) == "https"
+        return scheme.lowercase(Locale.getDefault()) == "https"
     }
 
     private fun formatBody(body: String, contentType: String?): String {
-        return if (contentType != null && contentType.toLowerCase(Locale.getDefault())
+        return if (contentType != null && contentType.lowercase(Locale.getDefault())
                 .contains("json")
         ) {
             FormatUtil.formatJson(body)
-        } else if (contentType != null && contentType.toLowerCase(Locale.getDefault())
+        } else if (contentType != null && contentType.lowercase(Locale.getDefault())
                 .contains("xml")
         ) {
             FormatUtil.formatXml(body)

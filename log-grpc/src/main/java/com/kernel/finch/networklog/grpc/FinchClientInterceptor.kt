@@ -56,6 +56,8 @@ internal class FinchClientInterceptor : ClientInterceptor {
                                 TextFormat.printer().escapingNonAscii(false).printToString(
                                     message as MessageOrBuilder
                                 )
+                            networkLog.responseContentLength =
+                                networkLog.responseBody.toByteArray().size.toLong()
                             FinchGrpcLogger.logNetworkEvent(networkLog)
                             super.onMessage(message)
                         }
@@ -89,6 +91,8 @@ internal class FinchClientInterceptor : ClientInterceptor {
                 networkLog.requestBody = TextFormat.printer().escapingNonAscii(false).printToString(
                     message as MessageOrBuilder
                 )
+                networkLog.requestContentLength =
+                    networkLog.requestBody.toByteArray().size.toLong()
                 FinchGrpcLogger.logNetworkEvent(networkLog)
                 super.sendMessage(message)
             }
