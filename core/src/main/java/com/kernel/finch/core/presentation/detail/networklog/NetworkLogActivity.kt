@@ -110,7 +110,7 @@ internal class NetworkLogActivity : BaseFinchActivity() {
     @SuppressLint("SetTextI18n")
     private fun update() {
         networkLog?.apply {
-            findViewById<TextView>(R.id.finch_text_view).text = "$method $path"
+            findViewById<TextView>(R.id.finch_text_view)?.text = "$method $path"
             for (fragment in adapter.fragments) {
                 fragment.networkLogUpdated(this)
             }

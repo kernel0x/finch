@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.kernel.finch.common.loggers.data.models.MediaType
 import com.kernel.finch.common.loggers.data.models.NetworkLogEntity
@@ -55,6 +55,7 @@ internal class NetworkLogPayloadFragment : Fragment(), NetworkLogFragment,
                         getFormattedRequestBody(),
                         requestBodyIsPlainText
                     )
+
                     TYPE_RESPONSE -> setText(
                         getResponseHeadersString(true),
                         getFormattedResponseBody(),
@@ -100,7 +101,7 @@ internal class NetworkLogPayloadFragment : Fragment(), NetworkLogFragment,
 
     override fun onQueryTextChange(newText: String): Boolean {
         view?.run {
-            findViewById<TextView>(R.id.finch_body).run {
+            findViewById<TextView>(R.id.finch_body)?.run {
                 var fullText = text.toString()
                 if (newText.isEmpty() || !fullText.contains(newText) || TextUtils.isEmpty(newText)) {
                     update()
@@ -110,7 +111,7 @@ internal class NetworkLogPayloadFragment : Fragment(), NetworkLogFragment,
                     val highlighted = "<font color='red'>$newText</font>"
                     fullText = fullText.replace(newText, highlighted)
                     text = Html.fromHtml(fullText)
-                    findViewById<NestedScrollView>(R.id.finch_scroll_view).scrollTo(
+                    findViewById<ScrollView>(R.id.finch_scroll_view)?.scrollTo(
                         0,
                         layout.getLineTop(lineNumber)
                     )

@@ -52,7 +52,7 @@ internal class FinchClientInterceptor : ClientInterceptor {
                             responseListener
                         ) {
                         override fun onMessage(message: RespT) {
-                            networkLog.responseBody =
+                            networkLog.responseBody +=
                                 TextFormat.printer().escapingNonAscii(false).printToString(
                                     message as MessageOrBuilder
                                 )
