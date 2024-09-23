@@ -2,7 +2,7 @@ ext.versions = [
         minSdk            : 21,
         targetSdk         : 34,
         compileSdk        : 34,
-        libraryVersion    : '2.2.11',
+        libraryVersion    : '2.2.12',
         libraryVersionCode: 15,
 
         okhttp3           : '3.7.0',

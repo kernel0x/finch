@@ -52,10 +52,13 @@ internal class FinchClientInterceptor : ClientInterceptor {
                             responseListener
                         ) {
                         override fun onMessage(message: RespT) {
+                            val body = if (message == null)
+                                ""
+                            else
+                                TextFormat.printer().escapingNonAscii(false)
+                                    .printToString(message as MessageOrBuilder)
                             networkLog.responseBody =
-                                TextFormat.printer().escapingNonAscii(false).printToString(
-                                    message as MessageOrBuilder
-                                )
+                                body
                             networkLog.responseContentLength =
                                 networkLog.responseBody.toByteArray().size.toLong()
                             FinchGrpcLogger.logNetworkEvent(networkLog)
@@ -88,9 +91,13 @@ internal class FinchClientInterceptor : ClientInterceptor {
             }
 
             override fun sendMessage(message: ReqT) {
-                networkLog.requestBody = TextFormat.printer().escapingNonAscii(false).printToString(
-                    message as MessageOrBuilder
-                )
+                val body = if (message == null)
+                    ""
+                else
+                    TextFormat.printer().escapingNonAscii(false)
+                        .printToString(message as MessageOrBuilder)
+                networkLog.requestBody =
+                    body
                 networkLog.requestContentLength =
                     networkLog.requestBody.toByteArray().size.toLong()
                 FinchGrpcLogger.logNetworkEvent(networkLog)
