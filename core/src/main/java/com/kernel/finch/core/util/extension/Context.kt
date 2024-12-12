@@ -16,21 +16,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-internal fun Context.registerSensorEventListener(sensorEventListener: SensorEventListener) =
-    (getSystemService(Context.SENSOR_SERVICE) as? SensorManager?)?.run {
-        registerListener(
-            sensorEventListener,
-            getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-            SensorManager.SENSOR_DELAY_NORMAL
-        )
-    } ?: false
-
-internal fun Context.unregisterSensorEventListener(sensorEventListener: SensorEventListener) {
-    (getSystemService(Context.SENSOR_SERVICE) as? SensorManager?)?.unregisterListener(
-        sensorEventListener
-    )
-}
-
 fun Context.applyTheme() =
     FinchCore.implementation.configuration.themeResourceId?.let { ContextThemeWrapper(this, it) }
         ?: this
@@ -41,7 +26,6 @@ internal fun Context.getUriForFile(file: File) = FileProvider.getUriForFile(
     file
 )
 
-@Suppress("BlockingMethodInNonBlockingContext")
 internal suspend fun Context.createScreenshotFromBitmap(bitmap: Bitmap, fileName: String): Uri? =
     withContext(Dispatchers.IO) {
         val file = createScreenCaptureFile(fileName)

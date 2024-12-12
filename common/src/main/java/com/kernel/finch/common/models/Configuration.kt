@@ -9,8 +9,7 @@ import java.util.*
 
 data class Configuration(
     @StyleRes val themeResourceId: Int? = DEFAULT_THEME_RESOURCE_ID,
-    val shakeThreshold: Int? = DEFAULT_SHAKE_THRESHOLD,
-    val shakeHapticFeedbackDuration: Long = DEFAULT_HAPTIC_FEEDBACK_DURATION,
+    val shakeDetection: Boolean = DEFAULT_SHAKE_DETECTION,
     val excludedPackageNames: List<String> = DEFAULT_EXCLUDED_PACKAGE_NAMES,
     val logger: FinchLogger? = DEFAULT_LOGGER,
     val networkLoggers: List<FinchNetworkLogger> = DEFAULT_NETWORK_LOGGERS,
@@ -31,9 +30,8 @@ data class Configuration(
     val applyInsets: ((windowInsets: Inset) -> Inset)? = DEFAULT_APPLY_INSETS
 ) {
     companion object {
-        private const val DEFAULT_SHAKE_THRESHOLD = 13
         private const val DEFAULT_SHOW_NOTIFICATION_NETWORK_LOGGERS = true
-        private const val DEFAULT_HAPTIC_FEEDBACK_DURATION = 100L
+        private const val DEFAULT_SHAKE_DETECTION = true
         private val DEFAULT_THEME_RESOURCE_ID: Int? = null
         private val DEFAULT_EXCLUDED_PACKAGE_NAMES = emptyList<String>()
         private val DEFAULT_LOGGER: FinchLogger? = null

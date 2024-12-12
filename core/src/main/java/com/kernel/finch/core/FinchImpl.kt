@@ -1,7 +1,9 @@
 package com.kernel.finch.core
 
 import android.app.Application
+import android.content.Context.SENSOR_SERVICE
 import android.graphics.Canvas
+import android.hardware.SensorManager
 import android.net.Uri
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
@@ -92,6 +94,15 @@ class FinchImpl(val uiManager: UiManager) : Finch {
         this.notificationManager = NotificationManager(application)
         this.networkLogDao = FinchDatabase.getInstance(application).networkLog()
         this.retentionManager = RetentionManager(application, Period.ONE_WEEK)
+        if (configuration.shakeDetection) {
+            (application.getSystemService(SENSOR_SERVICE) as SensorManager?)?.let {
+                ShakeDetectorManager {
+                    show()
+                }.apply {
+                    start(it)
+                }
+            }
+        }
         debugMenuInjector.register(application)
         configuration.logger?.register(::log, ::clearLogs)
         configuration.networkLoggers.forEach { it.register(::logNetworkEvent, ::clearNetworkLogs) }
