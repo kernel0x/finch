@@ -29,12 +29,12 @@ android {
 }
 
 dependencies {
-    //debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.3.1'
-    //releaseImplementation 'com.github.kernel0x.finch:noop:2.3.1'
-    //debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.3.1'
-    //releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.3.1'
-    //debugImplementation 'com.github.kernel0x.finch:log:2.3.1'
-    //releaseImplementation 'com.github.kernel0x.finch:log-noop:2.3.1'
+    //debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.3.2'
+    //releaseImplementation 'com.github.kernel0x.finch:noop:2.3.2'
+    //debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.3.2'
+    //releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.3.2'
+    //debugImplementation 'com.github.kernel0x.finch:log:2.3.2'
+    //releaseImplementation 'com.github.kernel0x.finch:log-noop:2.3.2'
     debugImplementation project(":ui-drawer")
     debugImplementation project(":log")
     debugImplementation project(":log-okhttp")
