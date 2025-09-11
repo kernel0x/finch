@@ -27,17 +27,17 @@ Pick a UI implementation and add the dependency:
 
 ````java
 dependencies {
-    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.3.3'
-    releaseImplementation 'com.github.kernel0x.finch:noop:2.3.3'
+    debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.3.4'
+    releaseImplementation 'com.github.kernel0x.finch:noop:2.3.4'
     // optional only for OkHttp
-    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.3.3'
-    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.3.3'
+    debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.3.4'
+    releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.3.4'
     // optional only for GRPC
-    debugImplementation 'com.github.kernel0x.finch:log-grpc:2.3.3'
-    releaseImplementation 'com.github.kernel0x.finch:log-grpc-noop:2.3.3'
+    debugImplementation 'com.github.kernel0x.finch:log-grpc:2.3.4'
+    releaseImplementation 'com.github.kernel0x.finch:log-grpc-noop:2.3.4'
     // optional only for logs
-    debugImplementation 'com.github.kernel0x.finch:log:2.3.3'
-    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.3.3'
+    debugImplementation 'com.github.kernel0x.finch:log:2.3.4'
+    releaseImplementation 'com.github.kernel0x.finch:log-noop:2.3.4'
 }
 ````
 
