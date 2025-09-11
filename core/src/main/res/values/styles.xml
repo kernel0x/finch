@@ -11,6 +11,7 @@
         <item name="android:fontFamily">@font/finch_console</item>
         <item name="android:textViewStyle">@style/Widget.Finch.TextView</item>
         <item name="android:buttonStyle">@style/Widget.Finch.Button</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="Widget.Finch.TextView" parent="android:Widget.TextView">
