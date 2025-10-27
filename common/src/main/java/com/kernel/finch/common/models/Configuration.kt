@@ -27,7 +27,8 @@ data class Configuration(
         "video_${DEFAULT_FILE_NAME_FORMAT.format(it)}"
     },
     val galleryDateFormatter: ((Long) -> CharSequence) = { DEFAULT_GALLERY_DATE_FORMAT.format(it) },
-    val applyInsets: ((windowInsets: Inset) -> Inset)? = DEFAULT_APPLY_INSETS
+    val applyInsets: ((windowInsets: Inset) -> Inset)? = DEFAULT_APPLY_INSETS,
+    val maxSize: Int = DEFAULT_MAX_SIZE
 ) {
     companion object {
         private const val DEFAULT_SHOW_NOTIFICATION_NETWORK_LOGGERS = true
@@ -49,5 +50,6 @@ data class Configuration(
             )
         }
         private val DEFAULT_APPLY_INSETS: ((windowInsets: Inset) -> Inset)? = null
+        private const val DEFAULT_MAX_SIZE = Int.MAX_VALUE
     }
 }

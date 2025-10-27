@@ -8,14 +8,14 @@ import com.kernel.finch.common.loggers.data.models.NetworkLogEntity.Companion.TA
 @Dao
 internal interface NetworkLogDao {
 
-    @Query("SELECT * FROM $TABLE_NAME ORDER BY requestDate DESC, id DESC")
-    fun getAll(): LiveData<List<NetworkLogEntity>>
+    @Query("SELECT * FROM $TABLE_NAME ORDER BY requestDate DESC, id DESC LIMIT :limit")
+    fun getAll(limit: Int): LiveData<List<NetworkLogEntity>>
 
-    @Query("SELECT * FROM $TABLE_NAME WHERE path LIKE '%' || :search ||'%' ORDER BY requestDate DESC, id DESC")
-    fun getAll(search: String): LiveData<List<NetworkLogEntity>>
+    @Query("SELECT * FROM $TABLE_NAME WHERE path LIKE '%' || :search ||'%' ORDER BY requestDate DESC, id DESC LIMIT :limit")
+    fun getAll(search: String, limit: Int): LiveData<List<NetworkLogEntity>>
 
-    @Query("SELECT * FROM $TABLE_NAME WHERE responseCode LIKE '%' || :responseCode ||'%' ORDER BY requestDate DESC, id DESC")
-    fun getAll(responseCode: Int?): LiveData<List<NetworkLogEntity>>
+    @Query("SELECT * FROM $TABLE_NAME WHERE responseCode LIKE '%' || :responseCode ||'%' ORDER BY requestDate DESC, id DESC LIMIT :limit")
+    fun getAll(responseCode: Int?, limit: Int): LiveData<List<NetworkLogEntity>>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE id = :id")
     fun getById(id: Long): LiveData<NetworkLogEntity>
