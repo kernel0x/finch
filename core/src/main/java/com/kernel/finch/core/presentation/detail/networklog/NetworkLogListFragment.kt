@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kernel.finch.FinchCore
 import com.kernel.finch.common.loggers.data.models.NetworkLogEntity
 import com.kernel.finch.core.R
 import com.kernel.finch.core.data.db.FinchDatabase
@@ -24,11 +25,13 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
     private lateinit var networkLogDao: NetworkLogDao
     private lateinit var adapter: NetworkLogAdapter
 
+    private val limit by lazy { FinchCore.implementation.configuration.maxSize }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         networkLogDao = FinchDatabase.getInstance(requireContext()).networkLog().also {
-            it.getAll().observe(this, { list ->
+            it.getAll(limit = limit).observe(this, { list ->
                 if (list != null) {
                     adapter.setData(list)
                 }
@@ -93,7 +96,7 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
                     })
             } else {
                 networkLogDao
-                    .getAll(currentFilter)
+                    .getAll(currentFilter, limit = limit)
                     .observe(this, { list ->
                         if (list != null) {
                             adapter.setData(list)
@@ -101,7 +104,7 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
                     })
             }
         } else {
-            networkLogDao.getAll()
+            networkLogDao.getAll(limit = limit)
                 .observe(this, { list ->
                     if (list != null) {
                         adapter.setData(list)
