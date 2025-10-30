@@ -3,10 +3,11 @@ package com.kernel.finch.core.presentation.detail.networklog
 import android.content.Context
 import android.os.AsyncTask
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kernel.finch.FinchCore
@@ -17,6 +18,7 @@ import com.kernel.finch.core.data.db.NetworkLogDao
 import com.kernel.finch.core.manager.NotificationManager
 import com.kernel.finch.core.presentation.detail.networklog.list.NetworkLogAdapter
 import com.kernel.finch.utils.consume
+import androidx.core.text.isDigitsOnly
 
 internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -25,18 +27,18 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
     private lateinit var networkLogDao: NetworkLogDao
     private lateinit var adapter: NetworkLogAdapter
 
+    private var activeLiveData: LiveData<List<NetworkLogEntity>>? = null
     private val limit by lazy { FinchCore.implementation.configuration.maxSize }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        networkLogDao = FinchDatabase.getInstance(requireContext()).networkLog().also {
-            it.getAll(limit = limit).observe(this, { list ->
-                if (list != null) {
-                    adapter.setData(list)
-                }
-            })
-        }
+        networkLogDao = FinchDatabase.getInstance(requireContext()).networkLog()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        updateLiveData()
     }
 
     override fun onCreateView(
@@ -76,6 +78,7 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
                 }
                 NotificationManager.clearBuffer()
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -86,32 +89,29 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
 
     override fun onQueryTextChange(newText: String): Boolean {
         currentFilter = newText
-        if (currentFilter.isNotEmpty()) {
-            if (TextUtils.isDigitsOnly(currentFilter)) {
-                networkLogDao
-                    .getAll(Integer.parseInt(currentFilter)).observe(this, { list ->
-                        if (list != null) {
-                            adapter.setData(list)
-                        }
-                    })
-            } else {
-                networkLogDao
-                    .getAll(currentFilter, limit = limit)
-                    .observe(this, { list ->
-                        if (list != null) {
-                            adapter.setData(list)
-                        }
-                    })
-            }
-        } else {
-            networkLogDao.getAll(limit = limit)
-                .observe(this, { list ->
-                    if (list != null) {
-                        adapter.setData(list)
-                    }
-                })
-        }
+        updateLiveData()
         return true
+    }
+
+    private fun updateLiveData() {
+        activeLiveData?.removeObservers(viewLifecycleOwner)
+
+        val newLiveData = if (currentFilter.isEmpty()) {
+            networkLogDao.getAll(limit = limit)
+        } else {
+            if (currentFilter.isDigitsOnly()) {
+                networkLogDao.getAll(Integer.parseInt(currentFilter), limit = limit)
+            } else {
+                networkLogDao.getAll(currentFilter, limit = limit)
+            }
+        }
+
+        newLiveData.observe(viewLifecycleOwner, Observer { list ->
+            if (list != null) {
+                adapter.setData(list)
+            }
+        })
+        activeLiveData = newLiveData
     }
 
     interface OnListFragmentInteractionListener {

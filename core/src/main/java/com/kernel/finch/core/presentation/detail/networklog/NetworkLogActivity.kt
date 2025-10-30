@@ -76,33 +76,39 @@ internal class NetworkLogActivity : BaseFinchActivity() {
                     share(Text.getShareText(this@NetworkLogActivity, this))
                 }
             }
+
             R.id.finch_share_file -> consume {
                 networkLog?.apply {
+                    val uniqueFileName = "${formatFileName(requestDate)}-$id"
                     shareFile(
                         FileUtil.createTextFile(
                             this@NetworkLogActivity,
-                            formatFileName(requestDate),
+                            uniqueFileName,
                             Text.getShareText(this@NetworkLogActivity, this)
                         )
                     )
                 }
             }
+
             R.id.finch_share_json -> consume {
                 networkLog?.apply {
+                    val uniqueFileName = "${formatFileName(requestDate)}-$id"
                     shareFile(
                         FileUtil.createJsonFile(
                             this@NetworkLogActivity,
-                            formatFileName(requestDate),
+                            uniqueFileName,
                             responseBody
                         )
                     )
                 }
             }
+
             R.id.finch_share_curl -> consume {
                 networkLog?.apply {
                     share(Text.getShareCurlCommand(this))
                 }
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
