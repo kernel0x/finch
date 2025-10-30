@@ -39,13 +39,6 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         updateLiveData()
-        networkLogDao = FinchDatabase.getInstance(requireContext()).networkLog().also {
-            it.getAll(limit = limit).observe(this, { list ->
-                if (list != null) {
-                    adapter.setData(list)
-                }
-            })
-        }
     }
 
     override fun onCreateView(
@@ -85,6 +78,7 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
                 }
                 NotificationManager.clearBuffer()
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -103,28 +97,13 @@ internal class NetworkLogListFragment : Fragment(), SearchView.OnQueryTextListen
         activeLiveData?.removeObservers(viewLifecycleOwner)
 
         val newLiveData = if (currentFilter.isEmpty()) {
-            networkLogDao.getAll()
+            networkLogDao.getAll(limit = limit)
         } else {
             if (currentFilter.isDigitsOnly()) {
-                networkLogDao.getAll(Integer.parseInt(currentFilter))
+                networkLogDao.getAll(Integer.parseInt(currentFilter), limit = limit)
             } else {
-                networkLogDao.getAll(currentFilter)
+                networkLogDao.getAll(currentFilter, limit = limit)
             }
-                networkLogDao
-                    .getAll(currentFilter, limit = limit)
-                    .observe(this, { list ->
-                        if (list != null) {
-                            adapter.setData(list)
-                        }
-                    })
-            }
-        } else {
-            networkLogDao.getAll(limit = limit)
-                .observe(this, { list ->
-                    if (list != null) {
-                        adapter.setData(list)
-                    }
-                })
         }
 
         newLiveData.observe(viewLifecycleOwner, Observer { list ->
