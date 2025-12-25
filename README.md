@@ -1,3 +1,35 @@
+
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="center">
+        <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=en">English</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=zh-CN">简体中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=zh-TW">繁體中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=ja">日本語</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=ko">한국어</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=hi">हिन्दी</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=th">ไทย</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=fr">Français</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=de">Deutsch</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=es">Español</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=it">Italiano</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=ru">Русский</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=pt">Português</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=nl">Nederlands</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=pl">Polski</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=ar">العربية</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=fa">فارسی</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=tr">Türkçe</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=vi">Tiếng Việt</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=id">Bahasa Indonesia</a>
+        | <a href="https://openaitx.github.io/view.html?user=kernel0x&project=finch&lang=as">অসমীয়া</
+      </div>
+    </div>
+  </details>
+</div>
+
 # Finch
 Finch offers a customizable debug menu for Android app development. It does not affect production code. Developers can easily add their own custom debugging features with simple steps.
 
