@@ -15,7 +15,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
-    implementation "io.grpc:grpc-protobuf:$versions.grpc"
-    implementation "io.grpc:grpc-okhttp:$versions.grpc"
+    implementation ("io.grpc:grpc-protobuf:$versions.grpc") {
+        exclude group: 'com.google.guava', module: 'guava'
+    }
+    implementation ("io.grpc:grpc-okhttp:$versions.grpc") {
+        exclude group: 'com.google.guava', module: 'guava'
+    }
     api project(":common-loggers")
 }

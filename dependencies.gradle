@@ -2,8 +2,8 @@ ext.versions = [
         minSdk            : 21,
         targetSdk         : 34,
         compileSdk        : 34,
-        libraryVersion    : '2.3.7',
-        libraryVersionCode: 22,
+        libraryVersion    : '2.3.8',
+        libraryVersionCode: 23,
 
         okhttp3           : '3.13.1',
         gson              : '2.11.0',
@@ -19,5 +19,5 @@ ext.versions = [
         retrofit          : '2.9.0',
         converterGson     : '2.9.0',
         coil              : '2.2.2',
-        grpc              : '1.61.1',
+        grpc              : '1.60.2',
 ]
