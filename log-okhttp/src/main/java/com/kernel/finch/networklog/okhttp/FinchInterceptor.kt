@@ -44,11 +44,11 @@ internal class FinchInterceptor : Interceptor {
 
         networkLog.setRequestHeaders(toHttpHeaderList(request.headers()))
         if (hasRequestBody) {
-            if (requestBody.contentType() != null) {
+            if (requestBody?.contentType() != null) {
                 networkLog.requestContentType = requestBody.contentType().toString()
             }
-            if (requestBody.contentLength() != -1L) {
-                networkLog.requestContentLength = requestBody.contentLength()
+            if (requestBody?.contentLength() != -1L) {
+                networkLog.requestContentLength = requestBody?.contentLength() ?: 0L
             }
         }
 
@@ -56,9 +56,9 @@ internal class FinchInterceptor : Interceptor {
         if (hasRequestBody && networkLog.requestBodyIsPlainText) {
             val source = getNativeSource(Buffer(), bodyGzipped(request.headers()))
             val buffer = source.buffer()
-            requestBody.writeTo(buffer)
+            requestBody?.writeTo(buffer)
             var charset = UTF8
-            val contentType = requestBody.contentType()
+            val contentType = requestBody?.contentType()
             if (contentType != null) {
                 charset = contentType.charset(UTF8)
             }
@@ -92,9 +92,9 @@ internal class FinchInterceptor : Interceptor {
         networkLog.responseCode = response.code()
         networkLog.responseMessage = response.message()
 
-        networkLog.responseContentLength = responseBody.contentLength()
-        if (responseBody.contentType() != null) {
-            networkLog.responseContentType = responseBody.contentType().toString()
+        networkLog.responseContentLength = responseBody?.contentLength() ?: 0L
+        if (responseBody?.contentType() != null) {
+            networkLog.responseContentType = responseBody?.contentType()?.toString() ?: ""
         }
         networkLog.setResponseHeaders(toHttpHeaderList(response.headers()))
 
@@ -104,7 +104,7 @@ internal class FinchInterceptor : Interceptor {
             source.request(java.lang.Long.MAX_VALUE)
             val buffer = source.buffer()
             var charset = UTF8
-            val contentType = responseBody.contentType()
+            val contentType = responseBody?.contentType()
             if (contentType != null) {
                 try {
                     charset = contentType.charset(UTF8)
@@ -165,7 +165,7 @@ internal class FinchInterceptor : Interceptor {
         var body = ""
         try {
             body = buffer.readString(maxBytes, charset)
-        } catch (e: EOFException) {
+        } catch (_: EOFException) {
             body += "\\n\\n--- Unexpected end of content ---"
         }
 
@@ -192,7 +192,7 @@ internal class FinchInterceptor : Interceptor {
                 return getNativeSource(source, true)
             }
         }
-        return response.body().source()
+        return response.body()?.source() ?: Buffer()
     }
 
     private fun toHttpHeaderList(headers: Headers): List<HeaderHttpModel> {

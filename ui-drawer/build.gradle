@@ -18,7 +18,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "androidx.appcompat:appcompat:$versions.appCompat"
     implementation "com.google.android.material:material:$versions.material"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
     implementation project(":core")
     api project(":common")
 }

@@ -29,18 +29,18 @@ android {
 }
 
 dependencies {
-    //debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.3.6'
-    //releaseImplementation 'com.github.kernel0x.finch:noop:2.3.6'
-    //debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.3.6'
-    //releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.3.6'
-    //debugImplementation 'com.github.kernel0x.finch:log:2.3.6'
-    //releaseImplementation 'com.github.kernel0x.finch:log-noop:2.3.6'
+    //debugImplementation 'com.github.kernel0x.finch:ui-drawer:2.3.7'
+    //releaseImplementation 'com.github.kernel0x.finch:noop:2.3.7'
+    //debugImplementation 'com.github.kernel0x.finch:log-okhttp:2.3.7'
+    //releaseImplementation 'com.github.kernel0x.finch:log-okhttp-noop:2.3.7'
+    //debugImplementation 'com.github.kernel0x.finch:log:2.3.7'
+    //releaseImplementation 'com.github.kernel0x.finch:log-noop:2.3.7'
     debugImplementation project(":ui-drawer")
     debugImplementation project(":log")
     debugImplementation project(":log-okhttp")
-    implementation "com.google.android.material:material:1.0.0"
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.2.0"
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.converterGson"
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 }
